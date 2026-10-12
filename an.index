@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MINH AN SHADER TOOL</title>
+  <style>
+    body {
+      background: #080d18;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .panel {
+      max-width: 480px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #111c2e;
+      border: 1px solid #55e9ed;
+      border-radius: 16px;
+    }
+    h1 { color: #55e9ed; text-align: center; }
+    button, input {
+      box-sizing: border-box;
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border-radius: 8px;
+    }
+    button {
+      background: #55e9ed;
+      border: 0;
+      font-weight: bold;
+    }
+    #status { overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h1>MINH AN SHADER TOOL</h1>
+    <p>Chọn file shader để kiểm tra thông tin.</p>
+
+    <input type="file" id="file">
+    <p id="status">Chưa chọn file</p>
+
+    <label for="color">Màu xem trước</label>
+    <input type="color" id="color" value="#00ffff">
+
+    <div id="preview"
+      style="padding:30px;text-align:center;border:2px solid #00ffff">
+      XEM TRƯỚC SHADER
+    </div>
+
+    <button id="apply">ÁP DỤNG MÀU XEM TRƯỚC</button>
+  </div>
+
+  <script>
+    const file = document.getElementById('file');
+    const status = document.getElementById('status');
+    const color = document.getElementById('color');
+    const preview = document.getElementById('preview');
+
+    file.addEventListener('change', () => {
+      const f = file.files[0];
+      status.textContent = f
+        ? `Tên: ${f.name} | Dung lượng: ${f.size} byte`
+        : 'Chưa chọn file';
+    });
+
+    document.getElementById('apply').onclick = () => {
+      preview.style.color = color.value;
+      preview.style.borderColor = color.value;
+      preview.style.boxShadow = `0 0 18px ${color.value}`;
+    };
+  </script>
+</body>
+</html>
